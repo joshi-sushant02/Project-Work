@@ -52,8 +52,8 @@ class _BottomDrawerState extends State<BottomDrawer> {
                           color: Color(0xff344955),
                         ),
                         child: Stack(
+                          clipBehavior: Clip.none,
                           alignment: Alignment(0, 0),
-                          overflow: Overflow.visible,
                           children: <Widget>[
                             Positioned(
                               child: ListView(
@@ -61,47 +61,56 @@ class _BottomDrawerState extends State<BottomDrawer> {
                                 children: <Widget>[
                                   ListTile(
                                     title: Text(
-                                      "Inbox",
+                                      "Profile",
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     leading: Icon(
                                       Icons.inbox,
                                       color: Colors.white,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(context, 'profile');
+                                    },
                                   ),
                                   ListTile(
                                     title: Text(
-                                      "Starred",
+                                      "Calender",
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     leading: Icon(
                                       Icons.star_border,
                                       color: Colors.white,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(context, 'Calender');
+                                    },
                                   ),
                                   ListTile(
                                     title: Text(
-                                      "Sent",
+                                      "Initial Tracking",
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     leading: Icon(
                                       Icons.send,
                                       color: Colors.white,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(context, 'tracking');
+                                    },
                                   ),
                                   ListTile(
                                     title: Text(
-                                      "Trash",
+                                      "File Upload",
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     leading: Icon(
                                       Icons.delete_outline,
                                       color: Colors.white,
                                     ),
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, 'file Upload');
+                                    },
                                   ),
                                   ListTile(
                                     title: Text(
@@ -130,10 +139,6 @@ class _BottomDrawerState extends State<BottomDrawer> {
                             )
                           ],
                         ))),
-                Container(
-                  height: 56,
-                  color: Color(0xff4a6572),
-                )
               ],
             ),
           );

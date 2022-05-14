@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:timeline_tile/timeline_tile.dart';
 
-class DeliveryTimeline extends StatelessWidget {
+class Stepper4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +16,7 @@ class DeliveryTimeline extends StatelessWidget {
             backgroundColor: Colors.white,
             body: Column(
               children: <Widget>[
-                Expanded(child: _TimelineDelivery()),
+                Expanded(child: _Timeline()),
               ],
             ),
           ),
@@ -26,7 +26,7 @@ class DeliveryTimeline extends StatelessWidget {
   }
 }
 
-class _TimelineDelivery extends StatelessWidget {
+class _Timeline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(

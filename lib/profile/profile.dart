@@ -1,4 +1,4 @@
-import 'package:firebase1/profileWidget/profilewidget.dart';
+import 'package:firebase1/profile/profilewidget.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -49,8 +49,7 @@ class _ProfileState extends State<Profile> {
                           SizedBox(
                             height: 80,
                           ),
-                          OutlineButton(
-                            color: Colors.red,
+                          OutlinedButton(
                             onPressed: () {},
                             child: Text(
                               'LOGOUT',
