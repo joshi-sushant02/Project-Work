@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "113747721841",
+    "project_id": "mou-tracker",
+    "storage_bucket": "mou-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113747721841:android:03f6e85d07494c615465d0",
+        "android_client_info": {
+          "package_name": "com.example.firebase1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113747721841-obmj60g1f3fduo80tdjhg4deplg3utkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeQDTvk_bUi1I00BPlwXN1qEHFWnWAtog"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113747721841-obmj60g1f3fduo80tdjhg4deplg3utkf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
