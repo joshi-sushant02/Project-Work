@@ -38,7 +38,7 @@ dependencies:
   firebase_storage: 
   firebase_core: 
   # path_provider: ^2.0.9
-  # url_launcher: ^6.0.10
+  url_launcher:
   # progress_timeline: ^0.0.5
   # flutter_showcase: ^0.1.0
   # weather_icons:

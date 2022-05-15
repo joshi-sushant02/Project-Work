@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase1/utils/fileDownload.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' as io;
-import 'package:firebase_core/firebase_core.dart';
 
 class FirebaseApk extends StatefulWidget {
   const FirebaseApk({Key? key}) : super(key: key);
@@ -22,7 +20,6 @@ class _FirebaseApkState extends State<FirebaseApk> {
   void initState() {
     super.initState();
 
-    // TODO: implement initState
     _future = FirebaseApi.listAll('/files11');
   }
 
@@ -35,69 +32,40 @@ class _FirebaseApkState extends State<FirebaseApk> {
           onPressed: () {},
         ),
       ),
-      body:
-          //  Column(
-          //   children: [
-          FutureBuilder<List<FirebaseFile>>(
-              future: _future,
-              builder: (cxt, data) {
-                switch (data.connectionState) {
-                  case ConnectionState.waiting:
-                    return Center(child: CircularProgressIndicator());
-                  default:
-                    if (data.hasError) {
-                      return Center(child: Text('Some error occurred!'));
-                    } else {
-                      final files = data.data!;
-
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 12),
-                          Expanded(
-                            child: ListView.builder(
-                              itemCount: files.length,
-                              itemBuilder: (context, index) {
-                                final file = files[index];
-
-                                return buildFile(context, file);
-                              },
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                }
-              }),
-      // Container(
-      //   child: Column(
-      //     children: [
-      //       FlatButton(
-      //           onPressed: pickFile,
-      //           child: Text("Select file"),
-      //           autofocus: true,
-      //           // highlightElevation: 2.0,
-      //           color: Colors.green),
-      //       SizedBox(height: 20),
-      //       FlatButton(
-      //           onPressed: fileUpload,
-      //           child: Text("Upload"),
-      //           // highlightElevation: 5.0,
-      //           focusColor: Colors.pink,
-      //           hoverColor: Colors.pinkAccent),
-      //       SizedBox(height: 20),
-      //       FlatButton(
-      //           onPressed: () {},
-      //           child: Text("download"),
-      //           // highlightElevation: 5.0,
-      //           focusColor: Colors.pink,
-      //           hoverColor: Colors.pinkAccent),
-      //       SizedBox(height: 20),
-      // ],
-      // ),
-      // ),
-      //   ],
-      // ),
+      body: Column(
+        children: [
+          Container(
+            child: Column(
+              children: [
+                FlatButton(
+                    onPressed: pickFile,
+                    child: Text("Select file"),
+                    autofocus: true,
+                    // highlightElevation: 2.0,
+                    color: Colors.green),
+                SizedBox(height: 20),
+                FlatButton(
+                    onPressed: fileUpload,
+                    child: Text("Upload"),
+                    // highlightElevation: 5.0,
+                    focusColor: Colors.pink,
+                    hoverColor: Colors.pinkAccent),
+                SizedBox(height: 20),
+                FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => FileDownload())));
+                    },
+                    child: Text("download"),
+                    // highlightElevation: 5.0,
+                    focusColor: Colors.pink,
+                    hoverColor: Colors.pinkAccent),
+                SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -175,50 +143,7 @@ class FirebaseApi {
     } catch (e) {
       print(e);
     }
-
-    // io.Directory dir = await getApplicationDocumentsDirectory();
-    // try {
-    //   final io.File file = io.File('/storage/emulated/0/Download/');
-    //   // final io.File file = io.File('${dir.path}/${ref.name}');
-    //   // print('${dir.path}/${ref.name}');
-    //   await ref.writeToFile(file);
-    //   print("done");
-    //   // print(object)
-    // } catch (e) {
-    //   print(e);
-    // }
   }
-
-// Future<void> downloadFile(Reference ref) async {
-//     final String url = await ref.getDownloadURL();
-//     final http.Response downloadData = await http.get(Uri.parse(url));
-//     final io.Directory systemTempDir =io.Directory.systemTemp;
-//     final io.File tempFile = io.File('${systemTempDir.path}/tmp.jpg');
-//     if (tempFile.existsSync()) {
-//       await tempFile.delete();
-//     }
-//     await tempFile.create();
-//     final StorageFileDownloadTask task = ref.writeToFile(tempFile);
-//     final int byteCount = (await task.future).totalByteCount;
-//     var bodyBytes = downloadData.bodyBytes;
-//     final String name = await ref.getName();
-//     final String path = await ref.getPath();
-//     print(
-//       'Success!\nDownloaded $name \nUrl: $url'
-//       '\npath: $path \nBytes Count :: $byteCount',
-//     );
-//     _scaffoldKey.currentState.showSnackBar(
-//       SnackBar(
-//         backgroundColor: Colors.white,
-//         content: Image.memory(
-//           bodyBytes,
-//           fit: BoxFit.fill,
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 }
 
 class FirebaseFile {
@@ -234,14 +159,6 @@ class FirebaseFile {
 }
 
 Widget buildFile(BuildContext context, FirebaseFile file) => ListTile(
-    // leading: ClipOval(
-    //   child: Image.network(
-    //     file.url,
-    //     width: 52,
-    //     height: 52,
-    //     fit: BoxFit.cover,
-    //   ),
-    // ),
     title: Text(
       file.name,
       style: TextStyle(

@@ -27,6 +27,10 @@ class Stepper4 extends StatelessWidget {
 }
 
 class _Timeline extends StatelessWidget {
+  bool approvedBy1 = false;
+  bool approvedBy12 = true;
+  bool approvedBy3 = true;
+  bool approvedBy4 = true;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -43,7 +47,7 @@ class _Timeline extends StatelessWidget {
               padding: EdgeInsets.all(6),
             ),
             endChild: _RightChild(
-              asset: 'assets/done1.jpg',
+              asset: approvedBy1 ? 'assets/done1.jpg' : 'assets/cancle.png',
               title: 'MOU CREATED',
               message: 'Initiator have created the MOU',
             ),

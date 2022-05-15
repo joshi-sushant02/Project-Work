@@ -1,3 +1,4 @@
+import 'package:firebase1/utils/mail.dart';
 import 'package:flutter/material.dart';
 
 class BottomDrawer extends StatefulWidget {
@@ -78,7 +79,7 @@ class _BottomDrawerState extends State<BottomDrawer> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     leading: Icon(
-                                      Icons.star_border,
+                                      Icons.calendar_month_rounded,
                                       color: Colors.white,
                                     ),
                                     onTap: () {
@@ -104,7 +105,7 @@ class _BottomDrawerState extends State<BottomDrawer> {
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     leading: Icon(
-                                      Icons.delete_outline,
+                                      Icons.file_copy,
                                       color: Colors.white,
                                     ),
                                     onTap: () {
@@ -114,11 +115,11 @@ class _BottomDrawerState extends State<BottomDrawer> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      "Spam",
+                                      "Send Mail",
                                       style: TextStyle(color: Colors.white),
                                     ),
                                     leading: Icon(
-                                      Icons.error,
+                                      Icons.mail,
                                       color: Colors.white,
                                     ),
                                     onTap: () {},

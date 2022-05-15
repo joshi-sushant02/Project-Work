@@ -1,3 +1,6 @@
+//                       ---------- This widget is to send emails directly---------
+//working on it......
+
 // import 'package:flutter/material.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
@@ -62,9 +65,9 @@
 //   required String Title,
 //   required String Message,
 // }) async {
-//   final url =
-//       'mailto:$to?subject:${Uri.encodeFull(Title)}&body:${Uri.encodeFull(Message)}';
-//   if (await (canLaunch(url))) {
-//     await launch(url);
+//   final Uri url = Uri.parse(
+//       'mailto:$to?subject:${Uri.encodeFull(Title)}&body:${Uri.encodeFull(Message)}');
+//   {
+//     await launchUrl(url);
 //   }
 // }
