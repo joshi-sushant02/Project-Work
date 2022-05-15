@@ -47,7 +47,8 @@ class _Timeline extends StatelessWidget {
               padding: EdgeInsets.all(6),
             ),
             endChild: _RightChild(
-              asset: approvedBy1 ? 'assets/done1.jpg' : 'assets/cancle.png',
+              // asset: approvedBy1 ? 'assets/done1.jpg' : 'assets/cancle.png',
+              asset: 'assets/done1.jpg',
               title: 'MOU CREATED',
               message: 'Initiator have created the MOU',
             ),
