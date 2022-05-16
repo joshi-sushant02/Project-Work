@@ -1,0 +1,3 @@
+Refer my Other Repo for firebase authentication
+
+https://github.com/joshi-sushant02/FlutterFire_Auth_Demo
