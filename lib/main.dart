@@ -1,10 +1,12 @@
 import 'package:firebase1/bottom_drawer/bottom_drawer.dart';
+import 'package:firebase1/create_mou/create.dart';
 import 'package:firebase1/profile/profile.dart';
 import 'package:firebase1/utils/calander.dart';
 import 'package:firebase1/utils/fileUpload.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'Stepper/stepper0.dart';
+import 'notifications_tab/tab_bar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,17 +23,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: 'home',
       routes: {
-        'home': (cntx) => BottomDrawer(),
-        'tracking': (cntx) => Stepper4(),
-        'profile': (cntx) => const Profile(),
-        'file Upload': (cntx) => const FirebaseApk(),
-        'Calender': (context) => const Calendar()
+        // 'home': (cntx) => createMou(),
+        // 'tracking': (cntx) => Stepper4(),
+        // 'profile': (cntx) => const Profile(),
+        // 'file Upload': (cntx) => const FirebaseApk(),
+        // 'Calender': (context) => const Calendar()
       },
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BottomDrawer(),
+      home: createMou(),
     );
   }
 }
