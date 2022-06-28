@@ -1,24 +1,28 @@
+import 'package:firebase1/notifications_tab/list.dart';
 import 'package:firebase1/notifications_tab/tabs.dart';
 import 'package:flutter/material.dart';
 
-class StackOver extends StatefulWidget {
+class NotiBar extends StatefulWidget {
+  const NotiBar({Key? key}) : super(key: key);
+
   @override
-  _StackOverState createState() => _StackOverState();
+  NotiBarState createState() => NotiBarState();
 }
 
-class _StackOverState extends State<StackOver>
-    with SingleTickerProviderStateMixin {
+class NotiBarState extends State<NotiBar> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   int index = 0;
+  static late List ontracklist;
+  static late List delayedlist;
 
   @override
   void initState() {
+    ontracklist = getonTracksList();
+    delayedlist = getdelayedList();
     _tabController = TabController(length: 2, vsync: this);
-
     _tabController.addListener(() {
       setState(() {
         index = _tabController.index;
-        print("Selected Index: " + _tabController.index.toString());
       });
     });
     super.initState();
@@ -33,50 +37,40 @@ class _StackOverState extends State<StackOver>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        bottom: PreferredSize(
-            preferredSize: Size.fromHeight(100.0),
-            child: tabs(_tabController, index)),
-        title: Text(
-          'Tab bar',
-        ),
-      ),
+      appBar: appbar(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             // tab bar view here
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  // first tab bar view widget
-                  Center(
-                    child: Text(
-                      'Place Bid',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-
-                  // second tab bar view widget
-                  Center(
-                    child: Text(
-                      'Buy Now',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            Expanded(child: tabview()),
           ],
         ),
       ),
+    );
+  }
+
+  PreferredSizeWidget appbar() {
+    return AppBar(
+      bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(100.0),
+          child: tabs(_tabController, index)),
+      title: const Text(
+        'Notifications',
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Widget tabview() {
+    return TabBarView(
+      controller: _tabController,
+      children: [
+        // first tab bar view widget
+        makeOnTrack,
+        // second tab bar view widget
+        makeDelayed
+      ],
     );
   }
 }

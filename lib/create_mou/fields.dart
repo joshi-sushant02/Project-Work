@@ -9,12 +9,14 @@ Widget fields(String text, String hintText) {
     children: [
       Text(
         text,
-        style:
-            const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+          color: Colors.black,
+        ),
       ),
       const SizedBox(height: 10),
       SizedBox(
-        height: 50,
+        height: 40,
+        width: 400,
         child: TextFormField(
           onChanged: (val) {},
           decoration: InputDecoration(
@@ -30,5 +32,13 @@ Widget fields(String text, String hintText) {
         ),
       ),
     ],
+  );
+}
+
+Widget title(String text) {
+  return Text(
+    text,
+    textAlign: TextAlign.center,
+    style: const TextStyle(color: Colors.black, fontSize: 35),
   );
 }

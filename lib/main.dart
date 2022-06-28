@@ -1,5 +1,6 @@
 import 'package:firebase1/bottom_drawer/bottom_drawer.dart';
 import 'package:firebase1/create_mou/create.dart';
+import 'package:firebase1/notifications_tab/tabs.dart';
 import 'package:firebase1/profile/profile.dart';
 import 'package:firebase1/utils/calander.dart';
 import 'package:firebase1/utils/fileUpload.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: createMou(),
+      home: NotiBar(),
     );
   }
 }
