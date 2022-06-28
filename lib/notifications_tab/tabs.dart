@@ -4,12 +4,13 @@ import 'tab_bar.dart';
 
 Widget tabs(TabController _tabController, int index) {
   return Padding(
-    padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+    padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
     child: Column(
       children: [
         // give the tab bar a height [can change hheight to preferred height]
         Container(
-          height: 45,
+          height: 40,
+          width: 300,
           decoration: BoxDecoration(
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(
@@ -49,14 +50,16 @@ Widget tabs(TabController _tabController, int index) {
 }
 
 ListTile makeListTile(onTrack onTrack) => ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-      title: Text(
-        onTrack.title,
-        style: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-      ),
-      subtitle: Column(
-        children: <Widget>[
+      contentPadding:
+          const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            onTrack.title,
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22),
+          ),
           Padding(
               padding: EdgeInsets.only(
                 top: 10.0,
@@ -78,7 +81,7 @@ Card makeCard(onTrack onTrack) => Card(
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Color.fromRGBO(64, 75, 96, .9),
+          color: Colors.amberAccent,
         ),
         child: makeListTile(onTrack),
       ),

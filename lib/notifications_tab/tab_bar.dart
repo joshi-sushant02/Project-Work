@@ -3,7 +3,7 @@ import 'package:firebase1/notifications_tab/tabs.dart';
 import 'package:flutter/material.dart';
 
 class NotiBar extends StatefulWidget {
-  const NotiBar({Key? key}) : super(key: key);
+  NotiBar({Key? key}) : super(key: key);
 
   @override
   NotiBarState createState() => NotiBarState();
@@ -53,11 +53,18 @@ class NotiBarState extends State<NotiBar> with SingleTickerProviderStateMixin {
   PreferredSizeWidget appbar() {
     return AppBar(
       bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(100.0),
+          preferredSize: const Size.fromHeight(80.0),
           child: tabs(_tabController, index)),
-      title: const Text(
-        'Notifications',
-        textAlign: TextAlign.center,
+      title: const Padding(
+        padding: EdgeInsets.only(
+          top: 35,
+        ),
+        child: Center(
+          child: Text(
+            'Notifications',
+            style: TextStyle(fontSize: 27),
+          ),
+        ),
       ),
     );
   }

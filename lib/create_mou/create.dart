@@ -13,8 +13,8 @@ class createMou extends StatefulWidget {
 }
 
 class createMouState extends State<createMou> {
-  UploadTask? task;
-  io.File? file;
+  static UploadTask? task;
+  static io.File? file;
   late Future<List<FirebaseFile>> _future;
 
   @override
@@ -48,7 +48,9 @@ class createMouState extends State<createMou> {
               const SizedBox(height: 20),
               fields("Field -6", "field6"),
               const SizedBox(height: 20),
-              Text(file == null ? "" : file!.path.split('/').last),
+              Text(file == null
+                  ? "no file selected"
+                  : file!.path.split('/').last),
               FlatButton(
                   onPressed: pickFile,
                   child: Text(
@@ -56,7 +58,14 @@ class createMouState extends State<createMou> {
                   autofocus: true,
                   color: Color.fromARGB(255, 72, 202, 76)),
               OutlinedButton(
-                onPressed: fileUpload,
+                onPressed: () {
+                  FirebaseApi.fileUpload();
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return dialog(context);
+                      });
+                },
                 child: Text("Done"),
               ),
             ],
@@ -77,20 +86,6 @@ class createMouState extends State<createMou> {
       setState(() {
         file = io.File(filepath);
       });
-    }
-  }
-
-  Future fileUpload() async {
-    if (file == null) {
-      print("not done");
-      return;
-    } else {
-      String filename = (file!.path).split('/').last;
-      final location = 'files11/$filename';
-
-      await FirebaseApi.uploadTask(location, file!);
-
-      print("done");
     }
   }
 }

@@ -1,8 +1,24 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'create.dart';
 import 'dart:io' as io;
 
 class FirebaseApi {
+  static Future fileUpload() async {
+    if (createMouState.file == null) {
+      print("not done");
+      return;
+    } else {
+      String filename = (createMouState.file!.path).split('/').last;
+      final location = 'files11/$filename';
+
+      createMouState.task =
+          FirebaseApi.uploadTask(location, createMouState.file!);
+      //final snapshot = await createMouState.task!.whenComplete(() {});
+      print("done");
+    }
+  }
+
   static UploadTask? uploadTask(String location, io.File file) {
     try {
       final refer = FirebaseStorage.instance.ref(location);
@@ -76,3 +92,21 @@ Widget buildFile(BuildContext context, FirebaseFile file) => ListTile(
     onTap: () async {
       await FirebaseApi.download(file.ref);
     });
+
+Widget buildUploadStatus(UploadTask task) => StreamBuilder<TaskSnapshot>(
+      stream: task.snapshotEvents,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final snap = snapshot.data!;
+          final progress = snap.bytesTransferred / snap.totalBytes;
+          final percentage = (progress * 100).toStringAsFixed(2);
+
+          return Text(
+            '$percentage %',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          );
+        } else {
+          return Text("Uploading...");
+        }
+      },
+    );

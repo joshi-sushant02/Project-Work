@@ -45,6 +45,7 @@ dependencies:
   # timelines:
   timeline_tile: ^2.0.0
   google_fonts:
+  flutter_awesome_alert_box: ^2.1.1
   # syncfusion_flutter_calendar: ^20.1.55
    
   
