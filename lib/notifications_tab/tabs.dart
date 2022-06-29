@@ -26,7 +26,7 @@ Widget tabs(TabController _tabController, int index) {
               borderRadius: BorderRadius.circular(
                 15.0,
               ),
-              color: index == 0 ? Colors.green : Colors.red,
+              color: index == 0 ? Color(0xFF64C636) : Color(0xFFCD364E),
             ),
             labelColor: Colors.white,
             unselectedLabelColor: Colors.black,
@@ -58,36 +58,38 @@ ListTile makeListTile(onTrack onTrack) => ListTile(
           Text(
             onTrack.title,
             style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22),
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
           ),
           Padding(
               padding: EdgeInsets.only(
                 top: 10.0,
               ),
               child: Text(onTrack.description,
-                  style: TextStyle(color: Colors.white))),
+                  style: TextStyle(color: Colors.black))),
           Padding(
               padding: EdgeInsets.only(
                 top: 10.0,
               ),
               child: Text(onTrack.date.toString(),
-                  style: TextStyle(color: Colors.white))),
+                  style: TextStyle(color: Colors.black))),
         ],
       ),
     );
 
-Card makeCard(onTrack onTrack) => Card(
-      elevation: 8.0,
+Container makeCard(onTrack onTrack) => Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [BoxShadow(blurRadius: 0.1)]),
       margin: new EdgeInsets.symmetric(horizontal: 10.0, vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.amberAccent,
+          color: Color(0xFFEDF9FF),
+          borderRadius: BorderRadius.circular(15),
         ),
         child: makeListTile(onTrack),
       ),
     );
 final makeOnTrack = Container(
-  // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
   child: ListView.builder(
     scrollDirection: Axis.vertical,
     shrinkWrap: true,
@@ -98,7 +100,6 @@ final makeOnTrack = Container(
   ),
 );
 final makeDelayed = Container(
-  // decoration: BoxDecoration(color: Color.fromRGBO(58, 66, 86, 1.0)),
   child: ListView.builder(
     scrollDirection: Axis.vertical,
     shrinkWrap: true,

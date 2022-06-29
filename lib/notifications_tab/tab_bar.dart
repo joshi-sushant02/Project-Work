@@ -52,6 +52,7 @@ class NotiBarState extends State<NotiBar> with SingleTickerProviderStateMixin {
 
   PreferredSizeWidget appbar() {
     return AppBar(
+      backgroundColor: Color(0xFF2D376E),
       bottom: PreferredSize(
           preferredSize: const Size.fromHeight(80.0),
           child: tabs(_tabController, index)),
@@ -62,7 +63,7 @@ class NotiBarState extends State<NotiBar> with SingleTickerProviderStateMixin {
         child: Center(
           child: Text(
             'Notifications',
-            style: TextStyle(fontSize: 27),
+            style: TextStyle(fontSize: 27, fontWeight: FontWeight.w600),
           ),
         ),
       ),

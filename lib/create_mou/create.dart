@@ -27,14 +27,17 @@ class createMouState extends State<createMou> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 100,
+        backgroundColor: Color(0xFF2D376E),
+        title: title("CREATE MOU"),
+      ),
       body: Form(
           child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 0.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 80),
-              title("CREATE MOU"),
               const SizedBox(height: 20),
               fields("Field -1", "MOU NAME"),
               const SizedBox(height: 20),
@@ -51,16 +54,12 @@ class createMouState extends State<createMou> {
               Text(file == null
                   ? "no file selected"
                   : file!.path.split('/').last),
-              FlatButton(
-                  onPressed: pickFile,
-                  child: Text(
-                      "                           Select file                            "),
-                  autofocus: true,
-                  color: Color.fromARGB(255, 72, 202, 76)),
+              button1(pickFile),
               OutlinedButton(
                 onPressed: () {
                   FirebaseApi.fileUpload();
                   showDialog(
+                      barrierDismissible: false,
                       context: context,
                       builder: (BuildContext context) {
                         return dialog(context);
