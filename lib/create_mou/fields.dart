@@ -1,11 +1,9 @@
-import 'dart:ui';
-
+import 'package:firebase1/create_mou/create_mou_backend.dart';
 import 'package:firebase1/create_mou/create.dart';
 import 'package:firebase1/create_mou/uploadApi.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart' as Path;
 
-import '../utils/fileUpload.dart';
+import '../notifications_tab/notifications_list.dart';
 
 Widget fields(String text, String hintText) {
   return Column(
@@ -22,9 +20,11 @@ Widget fields(String text, String hintText) {
         height: 40,
         width: 400,
         child: TextFormField(
-          onChanged: (val) {},
+          onChanged: (val) {
+            CreationDetails.mapping(hintText, val);
+          },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(10),
+            contentPadding: const EdgeInsets.all(10),
             hintText: hintText,
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black, width: 1.5),
@@ -50,10 +50,10 @@ Widget title(String text) {
   );
 }
 
-Widget button1(Future pickfile()) {
+Widget button1(Future Function() pickfile) {
   return FlatButton(
-    onPressed: () => pickfile,
-    child: SizedBox(
+    onPressed: () => pickfile(),
+    child: const SizedBox(
       height: 40,
       width: 400,
       child: Center(
@@ -61,16 +61,16 @@ Widget button1(Future pickfile()) {
       ),
     ),
     autofocus: true,
-    color: Color(0xFF64C636),
+    color: const Color(0xFF64C636),
   );
 }
 
 Widget dialog(BuildContext cnt) {
   return SimpleDialog(
-    backgroundColor: Color(0xFF2D376E),
+    backgroundColor: const Color(0xFF2D376E),
     // shape: Border(left: BorderSide(width: 2, color: Colors.black)),
     title: Row(
-      children: <Widget>[
+      children: const <Widget>[
         Icon(
           Icons.error,
           color: Color(0xFFF2C32C),
@@ -88,9 +88,9 @@ Widget dialog(BuildContext cnt) {
     ),
     contentPadding: const EdgeInsets.fromLTRB(24, 12, 24, 12),
     children: <Widget>[
-      createMouState.task != null
-          ? buildUploadStatus(createMouState.task!)
-          : Text(
+      CreateMouState.task != null
+          ? buildUploadStatus(CreateMouState.task!)
+          : const Text(
               "You haven't selected any file",
               style: TextStyle(color: Colors.white),
             ),
@@ -99,11 +99,16 @@ Widget dialog(BuildContext cnt) {
         children: <Widget>[
           TextButton(
             style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Color(0xFFF2C32C))),
+                backgroundColor:
+                    MaterialStateProperty.all(const Color(0xFFF2C32C))),
             onPressed: () {
-              Navigator.of(cnt).pop();
+              // CreationDetails.mapping("downloadLink", FirebaseApi.downloadUrl);
+              // CreationDetails.addData();
+              // Navigator.of(cnt).pop();
+
+              Navigator.of(cnt).pushNamed('Notifications');
             },
-            child: Text(
+            child: const Text(
               "Next",
               style: TextStyle(color: Colors.white),
             ),

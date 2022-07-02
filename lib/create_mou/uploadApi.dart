@@ -4,17 +4,20 @@ import 'create.dart';
 import 'dart:io' as io;
 
 class FirebaseApi {
+  static var downloadUrl = null;
   static Future fileUpload() async {
-    if (createMouState.file == null) {
+    if (CreateMouState.file == null) {
       print("not done");
       return;
     } else {
-      String filename = (createMouState.file!.path).split('/').last;
+      String filename = (CreateMouState.file!.path).split('/').last;
       final location = 'files11/$filename';
 
-      createMouState.task =
-          FirebaseApi.uploadTask(location, createMouState.file!);
-      //final snapshot = await createMouState.task!.whenComplete(() {});
+      CreateMouState.task =
+          FirebaseApi.uploadTask(location, CreateMouState.file!);
+      final snapshot = await CreateMouState.task!.whenComplete(() {});
+      downloadUrl = await snapshot.ref.getDownloadURL();
+
       print("done");
     }
   }

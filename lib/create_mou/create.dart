@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'dart:io' as io;
 import 'uploadApi.dart';
 
-class createMou extends StatefulWidget {
-  createMou({Key? key}) : super(key: key);
+class CreateMou extends StatefulWidget {
+  CreateMou({Key? key}) : super(key: key);
 
   @override
-  State<createMou> createState() => createMouState();
+  State<CreateMou> createState() => CreateMouState();
 }
 
-class createMouState extends State<createMou> {
+class CreateMouState extends State<CreateMou> {
   static UploadTask? task;
   static io.File? file;
   late Future<List<FirebaseFile>> _future;
