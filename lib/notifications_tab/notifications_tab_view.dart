@@ -4,44 +4,40 @@ import 'package:firebase1/notifications_tab/notifications_tab.dart';
 import 'package:firebase1/notifications_tab/notifications_tab_bar.dart';
 import 'package:flutter/material.dart';
 
-Widget tabview(TabController _tabController) {
+Widget tabview(
+    TabController _tabController, List ontrackList, List delayedList) {
   return TabBarView(
     controller: _tabController,
     children: [
       // first tab bar view widget
-      // makeOnTrack(),
-      Row(
-        children: [
-          Text(NotificationsState.delayedlist.length.toString()),
-          Text(NotificationsState.ontracklist.length.toString()),
-        ],
-      ),
+
+      makeOnTrack(ontrackList),
 
       // second tab bar view widget
-      makeDelayed(),
+      makeDelayed(delayedList),
     ],
   );
 }
 
-Widget makeOnTrack() => Container(
+Widget makeOnTrack(List ontrackList) => Container(
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: NotificationsState.ontracklist.length,
+        itemCount: ontrackList.length,
         itemBuilder: (BuildContext context, int index) {
-          return makeCard(NotificationsState.ontracklist[index]);
+          return makeCard(ontrackList[index]);
         },
       ),
     );
 
-Widget makeDelayed() => Container(
+Widget makeDelayed(List delayedList) => Container(
       child: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: NotificationsState.delayedlist.length,
+        itemCount: delayedList.length,
         itemBuilder: (BuildContext context, int index) {
           print("object");
-          return makeCard(NotificationsState.delayedlist[index]);
+          return makeCard(delayedList[index]);
         },
       ),
     );

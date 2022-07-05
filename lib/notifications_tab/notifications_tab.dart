@@ -1,3 +1,5 @@
+import 'package:firebase1/notifications_tab/notifications_list.dart';
+import 'package:firebase1/notifications_tab/notifications_tab_bar.dart';
 import 'package:flutter/material.dart';
 
 Widget tabs(TabController _tabController, int index) {
@@ -49,8 +51,19 @@ Widget tabs(TabController _tabController, int index) {
   );
 }
 
-PreferredSizeWidget appbar(TabController _tabController, int index) {
+PreferredSizeWidget appbar(
+    TabController _tabController, int index, BuildContext cnt) {
   return AppBar(
+    automaticallyImplyLeading: false,
+    leading: IconButton(
+      icon: Icon(
+        Icons.refresh,
+      ),
+      onPressed: () {
+        Navigator.of(cnt).pushReplacement(new MaterialPageRoute(
+            builder: (BuildContext context) => Notifications()));
+      },
+    ),
     backgroundColor: Color(0xFF2D376E),
     bottom: PreferredSize(
         preferredSize: const Size.fromHeight(80.0),
